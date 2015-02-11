@@ -195,10 +195,14 @@ class Association(threading.Thread):
 
                 # check for release request
                 if self.ACSE.CheckRelease():
+                    if 'OnRelease' in self.AE.__dict__:
+                        self.AE.OnRelease()
                     self.Kill()
 
                 # check for abort
                 if self.ACSE.CheckAbort():
+                    if 'OnAbort' in self.AE.__dict__:
+                        self.AE.OnAbort()
                     self.Kill()
                     return
 
